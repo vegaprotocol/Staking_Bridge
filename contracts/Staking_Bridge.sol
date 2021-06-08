@@ -15,11 +15,11 @@ contract ERC20_Staking_Bridge {
   }
 
   event Stake_Deposited(address indexed user, uint256 amount, bytes32 vega_public_key);
-  event Stake_Removed(address indexed user, uint256 amount);
+  event Stake_Removed(address indexed user, uint256 amount, bytes32 vega_public_key);
   event Stake_Transfered(address indexed from, address indexed to);
 
   /// @dev user => amount staked
-  mapping(address => uint256) public stake;
+  mapping(address => mapping(bytes32 => uint256)) public stake;
 
   /// @notice This stakes the given amount of tokens and credits them to the provided Vega public key
   /// @param amount Token amount to stake
@@ -28,17 +28,17 @@ contract ERC20_Staking_Bridge {
   /// @dev User MUST run "approve" on token prior to running Stake
   function Stake(uint256 amount, bytes32 vega_public_key) public {
     require(IERC20(staking_token).transferFrom(msg.sender, address(this), amount));
-    stake[msg.sender] += amount;
+    stake[msg.sender][vega_public_key] += amount;
     emit Stake_Deposited(msg.sender, amount, vega_public_key);
   }
 
   /// @notice This removes specified amount of stake if available to user
   /// @dev Emits Stake_Removed event if successful
   /// @param amount Amount of tokens to remove from staking
-  function Remove_Stake(uint256 amount) public {
-    stake[msg.sender] -= amount;
+  function Remove_Stake(uint256 amount, bytes32 vega_public_key) public {
+    stake[msg.sender][vega_public_key] -= amount;
     require(IERC20(staking_token).transfer(msg.sender, amount));
-    emit Stake_Removed(msg.sender, amount);
+    emit Stake_Removed(msg.sender, amount, vega_public_key);
   }
 
   /// @notice This transfers all stake from the sender's address to the "new_address"
