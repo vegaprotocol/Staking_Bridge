@@ -29,7 +29,7 @@ contract Vega_Staking_Bridge is IStake {
     emit Stake_Deposited(msg.sender, amount, vega_public_key);
   }
 
-  /// @notice This removes specified amount of stake if available to user
+  /// @notice This removes specified amount of stake of available to user
   /// @dev Emits Stake_Removed event if successful
   /// @param amount Amount of tokens to remove from staking
   /// @param vega_public_key Target Vega public key from which to deduct stake
@@ -47,7 +47,7 @@ contract Vega_Staking_Bridge is IStake {
   function Transfer_Stake(uint256 amount, address new_address, bytes32 vega_public_key) public {
     stake[msg.sender][vega_public_key] -= amount;
     stake[new_address][vega_public_key] += amount;
-    emit Stake_Transfered(msg.sender, new_address, vega_public_key);
+    emit Stake_Transfered(msg.sender, amount, new_address, vega_public_key);
   }
 }
 
