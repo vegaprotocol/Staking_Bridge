@@ -109,7 +109,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -122,7 +123,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -7325,9 +7327,339 @@
     "name": "solc",
     "version": "0.8.1+commit.df193b15.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1623251933971": {
+      "events": {
+        "0x9e3e33edf5dcded4adabc51b1266225d00fa41516bfcad69513fa4eca69519da": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Deposited",
+          "type": "event"
+        },
+        "0xa131d16963736e4c641f27a7f82f2e350b5971e555ae06ae906892bbba0a0939": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Removed",
+          "type": "event"
+        },
+        "0xb21602c241043c7ee0e4b878b72dd5e2267bd7b5fad1782e67f782ce0890973a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Transfered",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x6dF9e26b93fA2257eFfacAAbe7F55C7A0C02c649",
+      "transactionHash": "0x41bac1cdbf40e0fe5317559253693289df47bee9d8010b7587e0f3be4edb40f1"
+    },
+    "1623263158543": {
+      "events": {
+        "0x9e3e33edf5dcded4adabc51b1266225d00fa41516bfcad69513fa4eca69519da": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Deposited",
+          "type": "event"
+        },
+        "0xa131d16963736e4c641f27a7f82f2e350b5971e555ae06ae906892bbba0a0939": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Removed",
+          "type": "event"
+        },
+        "0xb21602c241043c7ee0e4b878b72dd5e2267bd7b5fad1782e67f782ce0890973a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Transfered",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xa956B5c58B4Ac8Dd1D44Ade3e8972A16e9C917E4",
+      "transactionHash": "0xb8f223766b80e5e847a5fb66efafed08ad9539a768adeaaf7c4fe0f0adab55ab"
+    },
+    "1623263294551": {
+      "events": {
+        "0x9e3e33edf5dcded4adabc51b1266225d00fa41516bfcad69513fa4eca69519da": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Deposited",
+          "type": "event"
+        },
+        "0xa131d16963736e4c641f27a7f82f2e350b5971e555ae06ae906892bbba0a0939": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Removed",
+          "type": "event"
+        },
+        "0xb21602c241043c7ee0e4b878b72dd5e2267bd7b5fad1782e67f782ce0890973a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Transfered",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xa956B5c58B4Ac8Dd1D44Ade3e8972A16e9C917E4",
+      "transactionHash": "0xb8f223766b80e5e847a5fb66efafed08ad9539a768adeaaf7c4fe0f0adab55ab"
+    },
+    "1623264027852": {
+      "events": {
+        "0x9e3e33edf5dcded4adabc51b1266225d00fa41516bfcad69513fa4eca69519da": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Deposited",
+          "type": "event"
+        },
+        "0xa131d16963736e4c641f27a7f82f2e350b5971e555ae06ae906892bbba0a0939": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Removed",
+          "type": "event"
+        },
+        "0xb21602c241043c7ee0e4b878b72dd5e2267bd7b5fad1782e67f782ce0890973a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "vega_public_key",
+              "type": "bytes32"
+            }
+          ],
+          "name": "Stake_Transfered",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xa956B5c58B4Ac8Dd1D44Ade3e8972A16e9C917E4",
+      "transactionHash": "0xb8f223766b80e5e847a5fb66efafed08ad9539a768adeaaf7c4fe0f0adab55ab"
+    }
+  },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-06-09T18:04:46.818Z",
+  "updatedAt": "2021-06-09T18:40:43.353Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Vega Protocol",
     "kind": "dev",
