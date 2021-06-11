@@ -47,7 +47,7 @@ contract Vega_Staking_Bridge is IStake {
   function Transfer_Stake(uint256 amount, address new_address, bytes32 vega_public_key) public {
     stake[msg.sender][vega_public_key] -= amount;
     stake[new_address][vega_public_key] += amount;
-    emit Stake_Transfered(msg.sender, amount, new_address, vega_public_key);
+    emit Stake_Transferred(msg.sender, amount, new_address, vega_public_key);
   }
 }
 
