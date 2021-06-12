@@ -16,16 +16,16 @@ contract Vega_Staking_Bridge is IStake {
   }
 
   /// @dev user => amount staked
-  mapping(address => mapping(bytes32 => uint256)) public stake;
+  mapping(address => mapping(bytes32 => uint256)) public stakes;
 
   /// @notice This stakes the given amount of tokens and credits them to the provided Vega public key
   /// @param amount Token amount to stake
   /// @param vega_public_key Target Vega public key to be credited with the stake
   /// @dev Emits Stake_Deposited event
   /// @dev User MUST run "approve" on token prior to running Stake
-  function Stake(uint256 amount, bytes32 vega_public_key) public {
+  function stake(uint256 amount, bytes32 vega_public_key) public {
     require(IERC20(staking_token).transferFrom(msg.sender, address(this), amount));
-    stake[msg.sender][vega_public_key] += amount;
+    stakes[msg.sender][vega_public_key] += amount;
     emit Stake_Deposited(msg.sender, amount, vega_public_key);
   }
 
@@ -33,8 +33,8 @@ contract Vega_Staking_Bridge is IStake {
   /// @dev Emits Stake_Removed event if successful
   /// @param amount Amount of tokens to remove from staking
   /// @param vega_public_key Target Vega public key from which to deduct stake
-  function Remove_Stake(uint256 amount, bytes32 vega_public_key) public {
-    stake[msg.sender][vega_public_key] -= amount;
+  function remove_stake(uint256 amount, bytes32 vega_public_key) public {
+    stakes[msg.sender][vega_public_key] -= amount;
     require(IERC20(staking_token).transfer(msg.sender, amount));
     emit Stake_Removed(msg.sender, amount, vega_public_key);
   }
@@ -44,9 +44,9 @@ contract Vega_Staking_Bridge is IStake {
   /// @param amount Stake amount to transfer
   /// @param new_address Target ETH address to recieve the stake
   /// @param vega_public_key Target Vega public key to be credited with the transfer
-  function Transfer_Stake(uint256 amount, address new_address, bytes32 vega_public_key) public {
-    stake[msg.sender][vega_public_key] -= amount;
-    stake[new_address][vega_public_key] += amount;
+  function transfer_stake(uint256 amount, address new_address, bytes32 vega_public_key) public {
+    stakes[msg.sender][vega_public_key] -= amount;
+    stakes[new_address][vega_public_key] += amount;
     emit Stake_Transferred(msg.sender, amount, new_address, vega_public_key);
   }
 }
