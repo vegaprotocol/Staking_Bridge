@@ -9,10 +9,10 @@ import "./IStake.sol";
 /// @author Vega Protocol
 /// @notice This contract manages the vesting of the Vega V2 ERC20 token
 contract Vega_Staking_Bridge is IStake {
-  address public staking_token;
+  address _staking_token;
 
   constructor(address token) {
-    staking_token = token;
+    _staking_token = token;
   }
 
   /// @dev user => amount staked
@@ -24,7 +24,7 @@ contract Vega_Staking_Bridge is IStake {
   /// @dev Emits Stake_Deposited event
   /// @dev User MUST run "approve" on token prior to running Stake
   function stake(uint256 amount, bytes32 vega_public_key) public {
-    require(IERC20(staking_token).transferFrom(msg.sender, address(this), amount));
+    require(IERC20(_staking_token).transferFrom(msg.sender, address(this), amount));
     stakes[msg.sender][vega_public_key] += amount;
     emit Stake_Deposited(msg.sender, amount, vega_public_key);
   }
@@ -35,7 +35,7 @@ contract Vega_Staking_Bridge is IStake {
   /// @param vega_public_key Target Vega public key from which to deduct stake
   function remove_stake(uint256 amount, bytes32 vega_public_key) public {
     stakes[msg.sender][vega_public_key] -= amount;
-    require(IERC20(staking_token).transfer(msg.sender, amount));
+    require(IERC20(_staking_token).transfer(msg.sender, amount));
     emit Stake_Removed(msg.sender, amount, vega_public_key);
   }
 
@@ -48,6 +48,11 @@ contract Vega_Staking_Bridge is IStake {
     stakes[msg.sender][vega_public_key] -= amount;
     stakes[new_address][vega_public_key] += amount;
     emit Stake_Transferred(msg.sender, amount, new_address, vega_public_key);
+  }
+
+  /// @return the address of the token that is able to be staked
+  function staking_token() external override view returns (address) {
+    return _staking_token;
   }
 }
 
