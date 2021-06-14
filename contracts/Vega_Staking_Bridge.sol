@@ -63,6 +63,12 @@ contract Vega_Staking_Bridge is IStake {
   function stake_balance(address target, bytes32 vega_public_key) external override view returns (uint256) {
     return  stakes[target][vega_public_key];
   }
+
+  /// @dev This is IStake.total_staked
+  /// @return total tokens staked on contract
+  function total_staked() external override view returns (uint256) {
+    return IERC20(_staking_token).balanceOf(address(this));
+  }
 }
 
 

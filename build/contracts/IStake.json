@@ -118,9 +118,22 @@
       ],
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "total_staked",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.1+commit.df193b15\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"Stake_Deposited\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"Stake_Removed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"Stake_Transferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"stake_balance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"staking_token\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface contains all of the events necessary for staking Vega token\",\"kind\":\"dev\",\"methods\":{\"stake_balance(address,bytes32)\":{\"params\":{\"target\":\"Target address to check\",\"vega_public_key\":\"Target vega public key to check\"},\"returns\":{\"_0\":\"the number of tokens staked for that address->vega_public_key pair\"}},\"staking_token()\":{\"returns\":{\"_0\":\"the address of the token that is able to be staked\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/danny/source/vega/Staking_Bridge/Staking_Bridge/contracts/IStake.sol\":\"IStake\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/danny/source/vega/Staking_Bridge/Staking_Bridge/contracts/IStake.sol\":{\"keccak256\":\"0xc30e9f3375ca00dffe7baa9f126e7eb27d4f486d4b2665142b6f7b30f79d8e35\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e1b5d989c398073d86d3cf17a9de529af0b70c9e0148446ede6aafc1224e9f29\",\"dweb:/ipfs/QmZsyronJNbZEYE3YqNbopNVazMvx8Nikg7x4pDEW4aBGi\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.1+commit.df193b15\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"Stake_Deposited\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"Stake_Removed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"Stake_Transferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"vega_public_key\",\"type\":\"bytes32\"}],\"name\":\"stake_balance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"staking_token\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"total_staked\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface contains all of the events necessary for staking Vega token\",\"kind\":\"dev\",\"methods\":{\"stake_balance(address,bytes32)\":{\"params\":{\"target\":\"Target address to check\",\"vega_public_key\":\"Target vega public key to check\"},\"returns\":{\"_0\":\"the number of tokens staked for that address->vega_public_key pair\"}},\"staking_token()\":{\"returns\":{\"_0\":\"the address of the token that is able to be staked\"}},\"total_staked()\":{\"returns\":{\"_0\":\"total tokens staked on contract\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/danny/source/vega/Staking_Bridge/Staking_Bridge/contracts/IStake.sol\":\"IStake\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/danny/source/vega/Staking_Bridge/Staking_Bridge/contracts/IStake.sol\":{\"keccak256\":\"0x7985e57995084a6ee1dcd5ed4f6f6b63730eb933ac625f9f53b2e2101cbd5732\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9a1a01264b09f5d341fa6982fbea6d810f8099474285370fe3461155518bda22\",\"dweb:/ipfs/QmbcVrofPAiDXQ4gArKJdKTqPYmVe1WV9h2GNWa19ob7ML\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -128,16 +141,16 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity 0.8.1;\n\n/**\n * @dev Interface contains all of the events necessary for staking Vega token\n */\ninterface IStake {\n  event Stake_Deposited(address indexed user, uint256 amount, bytes32 indexed vega_public_key);\n  event Stake_Removed(address indexed user, uint256 amount, bytes32 indexed vega_public_key);\n  event Stake_Transferred(address indexed from, uint256 amount, address indexed to, bytes32 indexed vega_public_key);\n\n  /// @return the address of the token that is able to be staked\n  function staking_token() external view returns (address);\n\n  /// @param target Target address to check\n  /// @param vega_public_key Target vega public key to check\n  /// @return the number of tokens staked for that address->vega_public_key pair\n  function stake_balance(address target, bytes32 vega_public_key) external view returns (uint256);\n}\n",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity 0.8.1;\n\n/**\n * @dev Interface contains all of the events necessary for staking Vega token\n */\ninterface IStake {\n  event Stake_Deposited(address indexed user, uint256 amount, bytes32 indexed vega_public_key);\n  event Stake_Removed(address indexed user, uint256 amount, bytes32 indexed vega_public_key);\n  event Stake_Transferred(address indexed from, uint256 amount, address indexed to, bytes32 indexed vega_public_key);\n\n  /// @return the address of the token that is able to be staked\n  function staking_token() external view returns (address);\n\n  /// @param target Target address to check\n  /// @param vega_public_key Target vega public key to check\n  /// @return the number of tokens staked for that address->vega_public_key pair\n  function stake_balance(address target, bytes32 vega_public_key) external view returns (uint256);\n\n\n  /// @return total tokens staked on contract\n  function total_staked() external view returns (uint256);\n}\n",
   "sourcePath": "/home/danny/source/vega/Staking_Bridge/Staking_Bridge/contracts/IStake.sol",
   "ast": {
     "absolutePath": "/home/danny/source/vega/Staking_Bridge/Staking_Bridge/contracts/IStake.sol",
     "exportedSymbols": {
       "IStake": [
-        631
+        637
       ]
     },
-    "id": 632,
+    "id": 638,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -163,9 +176,9 @@
           "text": " @dev Interface contains all of the events necessary for staking Vega token"
         },
         "fullyImplemented": false,
-        "id": 631,
+        "id": 637,
         "linearizedBaseContracts": [
-          631
+          637
         ],
         "name": "IStake",
         "nodeType": "ContractDefinition",
@@ -540,7 +553,7 @@
               ],
               "src": "585:9:2"
             },
-            "scope": 631,
+            "scope": 637,
             "src": "538:57:2",
             "stateMutability": "view",
             "virtual": false,
@@ -653,27 +666,86 @@
               ],
               "src": "871:9:2"
             },
-            "scope": 631,
+            "scope": 637,
             "src": "785:96:2",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 631,
+              "nodeType": "StructuredDocumentation",
+              "src": "886:43:2",
+              "text": "@return total tokens staked on contract"
+            },
+            "functionSelector": "af7568dd",
+            "id": 636,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "total_staked",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 632,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "953:2:2"
+            },
+            "returnParameters": {
+              "id": 635,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 634,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 636,
+                  "src": "979:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 633,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "979:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "978:9:2"
+            },
+            "scope": 637,
+            "src": "932:56:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 632,
-        "src": "143:740:2"
+        "scope": 638,
+        "src": "143:847:2"
       }
     ],
-    "src": "33:851:2"
+    "src": "33:958:2"
   },
   "legacyAST": {
     "absolutePath": "/home/danny/source/vega/Staking_Bridge/Staking_Bridge/contracts/IStake.sol",
     "exportedSymbols": {
       "IStake": [
-        631
+        637
       ]
     },
-    "id": 632,
+    "id": 638,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -699,9 +771,9 @@
           "text": " @dev Interface contains all of the events necessary for staking Vega token"
         },
         "fullyImplemented": false,
-        "id": 631,
+        "id": 637,
         "linearizedBaseContracts": [
-          631
+          637
         ],
         "name": "IStake",
         "nodeType": "ContractDefinition",
@@ -1076,7 +1148,7 @@
               ],
               "src": "585:9:2"
             },
-            "scope": 631,
+            "scope": 637,
             "src": "538:57:2",
             "stateMutability": "view",
             "virtual": false,
@@ -1189,18 +1261,77 @@
               ],
               "src": "871:9:2"
             },
-            "scope": 631,
+            "scope": 637,
             "src": "785:96:2",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 631,
+              "nodeType": "StructuredDocumentation",
+              "src": "886:43:2",
+              "text": "@return total tokens staked on contract"
+            },
+            "functionSelector": "af7568dd",
+            "id": 636,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "total_staked",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 632,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "953:2:2"
+            },
+            "returnParameters": {
+              "id": 635,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 634,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 636,
+                  "src": "979:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 633,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "979:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "978:9:2"
+            },
+            "scope": 637,
+            "src": "932:56:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 632,
-        "src": "143:740:2"
+        "scope": 638,
+        "src": "143:847:2"
       }
     ],
-    "src": "33:851:2"
+    "src": "33:958:2"
   },
   "compiler": {
     "name": "solc",
@@ -1208,7 +1339,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-06-14T15:25:36.715Z",
+  "updatedAt": "2021-06-14T17:27:50.688Z",
   "devdoc": {
     "details": "Interface contains all of the events necessary for staking Vega token",
     "kind": "dev",
@@ -1225,6 +1356,11 @@
       "staking_token()": {
         "returns": {
           "_0": "the address of the token that is able to be staked"
+        }
+      },
+      "total_staked()": {
+        "returns": {
+          "_0": "total tokens staked on contract"
         }
       }
     },
