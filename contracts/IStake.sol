@@ -12,4 +12,9 @@ interface IStake {
 
   /// @return the address of the token that is able to be staked
   function staking_token() external view returns (address);
+
+  /// @param target Target address to check
+  /// @param vega_public_key Target vega public key to check
+  /// @return the number of tokens staked for that address->vega_public_key pair
+  function stake_balance(address target, bytes32 vega_public_key) external view returns (uint256);
 }

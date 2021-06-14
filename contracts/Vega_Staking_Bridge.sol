@@ -16,7 +16,7 @@ contract Vega_Staking_Bridge is IStake {
   }
 
   /// @dev user => amount staked
-  mapping(address => mapping(bytes32 => uint256)) public stakes;
+  mapping(address => mapping(bytes32 => uint256)) stakes;
 
   /// @notice This stakes the given amount of tokens and credits them to the provided Vega public key
   /// @param amount Token amount to stake
@@ -50,9 +50,18 @@ contract Vega_Staking_Bridge is IStake {
     emit Stake_Transferred(msg.sender, amount, new_address, vega_public_key);
   }
 
+  /// @dev This is IStake.staking_token
   /// @return the address of the token that is able to be staked
   function staking_token() external override view returns (address) {
     return _staking_token;
+  }
+
+  /// @dev This is IStake.stake_balance
+  /// @param target Target address to check
+  /// @param vega_public_key Target vega public key to check
+  /// @return the number of tokens staked for that address->vega_public_key pair
+  function stake_balance(address target, bytes32 vega_public_key) external override view returns (uint256) {
+    return  stakes[target][vega_public_key];
   }
 }
 
