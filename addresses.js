@@ -1,4 +1,4 @@
 let addresses = {
-  staking_bridge_address: "0xce28aA54d173bbfa88b9C2247575c435Bd69B748",
-  token_address: "0x7e503d51E18bF3d5825682A54B363799D4a8e344"
+  staking_bridge_address: "0x6d3c5aaB0DF966BC0f88f2961FD599347e9B52c5",
+  token_address: "0x16480156222D4525f02F0F2BdF8A45A23bd26431"
 }
