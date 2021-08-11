@@ -50,3 +50,8 @@ Parameters:
 * vega_public_key - The target Vega public key who's balance is to be transfered
 
 Emits: `Stake_Transferred` event
+
+
+## Depoyments
+### Ropsten
+* Staking Bridge: `0x6d3c5aaB0DF966BC0f88f2961FD599347e9B52c5`
