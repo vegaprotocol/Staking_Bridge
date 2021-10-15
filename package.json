@@ -1,0 +1,40 @@
+{
+  "name": "vega_staking_bridge",
+  "version": "1.0.0",
+  "authos": "nemitari ajienka @najienka",
+  "description": "",
+  "main": "truffle-config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "README.md",
+  "devDependencies": {
+    "@openzeppelin/truffle-upgrades": "^1.9.1",
+    "@studydefi/money-legos": "^2.4.2",
+    "@truffle/hdwallet-provider": "1.5.0",
+    "@types/bignumber.js": "^5.0.0",
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.9.1",
+    "chai": "^4.3.4",
+    "dotenv": "^10.0.0",
+    "openzeppelin-test-helpers": "^0.5.1",
+    "solhint": "^3.3.6",
+    "solidity-coverage": "^0.7.17",
+    "truffle-plugin-verify": "^0.5.15"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "4.3.2",
+    "@openzeppelin/test-helpers": "0.5.13",
+    "@types/bs58": "^4.0.1",
+    "bignumber.js": "^9.0.1",
+    "ethers": "^5.4.6",
+    "truffle-flattener": "^1.5.0"
+  }
+}
