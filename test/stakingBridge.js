@@ -50,14 +50,13 @@ describe('Staking Bridge contract', () => {
             expectBignumberEqual(args.amount, parseEther('100'))
         })
 
-        it('staking zero amount works', async () => {
+        it('staking zero amount should revert', async () => {
             await token.mint_and_issue(accounts[1], parseEther('100'))
             await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[1]})
-            const tx = await stakeBridge.stake(0, stringToBytes32('accounts[1]'), {from: accounts[1]})
-            const {args} = await findEventInTransaction(tx, "Stake_Deposited")
-            expect(args.user).to.be.equal(accounts[1])
-            expect(args.vega_public_key).to.be.equal(ethers.utils.formatBytes32String('accounts[1]'))
-            expectBignumberEqual(args.amount, 0)
+            await shouldFailWithMessage(
+                stakeBridge.stake(0, stringToBytes32('accounts[1]'), {from: accounts[1]}),
+                "amount to stake should be greater than zero"
+            )
 
         })
     })
@@ -89,11 +88,58 @@ describe('Staking Bridge contract', () => {
             expect(args.vega_public_key).to.be.equal(ethers.utils.formatBytes32String('accounts[1]'))
             expectBignumberEqual(args.amount, parseEther('10'))
         })
+
+        it('removing zero should revert', async () => {
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            await shouldFailWithMessage(
+                stakeBridge.remove_stake(0, stringToBytes32('accounts[2]'), {from: accounts[2]}),
+                "amount to unstake should be greater than zero"
+            )
+        })
+
+        it('removing more than total staked should revert', async () => {
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            await shouldFailWithMessage(
+                stakeBridge.remove_stake(parseEther('101'), stringToBytes32('accounts[2]'), {from: accounts[2]}),
+                "amount to unstake should not exceed total staked"
+            )
+        })
     })
 
     describe('transfer_stake()', () => {
-        it('', async () => {
-            
+        it('should not transfer if amount exceeds total staked', async () => {
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[1]'), {from: accounts[2]})
+            await shouldFailWithMessage(
+                stakeBridge.transfer_stake(parseEther('101'), accounts[1], stringToBytes32('accounts[2]'), {from: accounts[2]}),
+                "amount to transfer exceeds total staked"
+            )
+        })
+
+        it('using different vega key used to stake will result in invalid staked amount', async () => {
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[1]'), {from: accounts[2]})
+            // transfer with different vega public key
+            await shouldFailWithMessage(
+                stakeBridge.transfer_stake(parseEther('10'), ZERO_ADDRESS, stringToBytes32('accounts[2]'), {from: accounts[2]}),
+                "amount to transfer exceeds total staked"
+            )
+        })
+
+        it('should not transfer to zero address', async () => {
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            await shouldFailWithMessage(
+                stakeBridge.transfer_stake(parseEther('10'), ZERO_ADDRESS, stringToBytes32('accounts[2]'), {from: accounts[2]}),
+                "cannot transfer stake to zero address"
+            )
         })
     })
 

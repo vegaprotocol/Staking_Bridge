@@ -24,6 +24,7 @@ contract Vega_Staking_Bridge is IStake {
   /// @dev Emits Stake_Deposited event
   /// @dev User MUST run "approve" on token prior to running Stake
   function stake(uint256 amount, bytes32 vega_public_key) public {
+    require(amount > 0, "amount to stake should be greater than zero");
     require(IERC20(_staking_token).transferFrom(msg.sender, address(this), amount));
     stakes[msg.sender][vega_public_key] += amount;
     emit Stake_Deposited(msg.sender, amount, vega_public_key);
@@ -34,6 +35,8 @@ contract Vega_Staking_Bridge is IStake {
   /// @param amount Amount of tokens to remove from staking
   /// @param vega_public_key Target Vega public key from which to deduct stake
   function remove_stake(uint256 amount, bytes32 vega_public_key) public {
+    require(amount > 0, "amount to unstake should be greater than zero");
+    require(amount <= stakes[msg.sender][vega_public_key], "amount to unstake should not exceed total staked");
     stakes[msg.sender][vega_public_key] -= amount;
     require(IERC20(_staking_token).transfer(msg.sender, amount));
     emit Stake_Removed(msg.sender, amount, vega_public_key);
@@ -45,6 +48,8 @@ contract Vega_Staking_Bridge is IStake {
   /// @param new_address Target ETH address to recieve the stake
   /// @param vega_public_key Target Vega public key to be credited with the transfer
   function transfer_stake(uint256 amount, address new_address, bytes32 vega_public_key) public {
+    require(amount <= stakes[msg.sender][vega_public_key], "amount to transfer exceeds total staked");
+    require(new_address != address(0), "cannot transfer stake to zero address");
     stakes[msg.sender][vega_public_key] -= amount;
     stakes[new_address][vega_public_key] += amount;
     emit Stake_Transferred(msg.sender, amount, new_address, vega_public_key);
