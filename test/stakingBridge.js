@@ -144,21 +144,106 @@ describe('Staking Bridge contract', () => {
     })
 
     describe('staking_token()', () => {
-        it('', async () => {
-            
+        it('should return valid address', async () => {
+            expect(await stakeBridge.staking_token()).to.be.equal(token.address)
+            expect(await stakeBridge.staking_token()).to.not.be.equal(ZERO_ADDRESS)
         })
+
+        it('should not set zero address as token', async () => {
+            await shouldFailWithMessage(
+                VegaStakingBridge.new(ZERO_ADDRESS),
+                "cannot set zero address as token"
+            )
+        })
+
     })
 
     describe('stake_balance()', () => {
-        it('', async () => {
-            
+        it('should return correct stake balance with valid account and vega public key pair', async () => {
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            expectBignumberEqual(
+                await stakeBridge.stake_balance(accounts[2], stringToBytes32('accounts[2]')),
+                parseEther('100')
+            )
+        })
+
+        it('should return zero balance with incorrect account and vega public key pair', async () => {
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            expectBignumberEqual(
+                await stakeBridge.stake_balance(accounts[2], stringToBytes32('accounts[1]')),
+                0
+            )
         })
     })
 
 
     describe('total_staked()', () => {
-        it('', async () => {
+        it('return correct total staked after one user stakes', async () => {
+            await token.mint_and_issue(accounts[1], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[1]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[1]'), {from: accounts[1]})
             
+            expectBignumberEqual(
+                await stakeBridge.total_staked(),
+                parseEther('100')
+            )
+        })
+
+        it('return correct total staked after multiple users stake', async () => {
+            await token.mint_and_issue(accounts[1], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[1]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[1]'), {from: accounts[1]})
+            
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            
+            expectBignumberEqual(
+                await stakeBridge.total_staked(),
+                parseEther('200')
+            )
+        })
+
+        it('return correct total staked after multiple users stake and withdraw', async () => {
+            await token.mint_and_issue(accounts[1], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[1]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[1]'), {from: accounts[1]})
+            
+            await token.mint_and_issue(accounts[2], parseEther('100'))
+            await token.approve(stakeBridge.address, parseEther('100'), {from: accounts[2]})
+            await stakeBridge.stake(parseEther('100'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            expectBignumberEqual(
+                await stakeBridge.total_staked(),
+                parseEther('200')
+            )
+
+            await stakeBridge.remove_stake(parseEther('10'), stringToBytes32('accounts[1]'), {from: accounts[1]})
+            expectBignumberEqual(
+                await stakeBridge.total_staked(),
+                parseEther('190')
+            )
+
+            await stakeBridge.remove_stake(parseEther('30'), stringToBytes32('accounts[2]'), {from: accounts[2]})
+            expectBignumberEqual(
+                await stakeBridge.total_staked(),
+                parseEther('160')
+            )
+
+            await shouldFailWithMessage(
+                stakeBridge.stake(parseEther('10'), stringToBytes32('accounts[1]'), {from: accounts[1]}),
+                "ERC20: transfer amount exceeds allowance"
+            ) 
+
+            await token.approve(stakeBridge.address, parseEther('10'), {from: accounts[1]})
+            await stakeBridge.stake(parseEther('10'), stringToBytes32('accounts[1]'), {from: accounts[1]})
+            expectBignumberEqual(
+                await stakeBridge.total_staked(),
+                parseEther('170')
+            )
         })
     })
 

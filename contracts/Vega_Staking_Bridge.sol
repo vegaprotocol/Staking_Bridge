@@ -12,6 +12,7 @@ contract Vega_Staking_Bridge is IStake {
   address _staking_token;
 
   constructor(address token) {
+    require(token != address(0), "cannot set zero address as token");
     _staking_token = token;
   }
 
