@@ -54,4 +54,5 @@ Emits: `Stake_Transferred` event
 
 ## Depoyments
 ### Ropsten
-* Staking Bridge: `0x6d3c5aaB0DF966BC0f88f2961FD599347e9B52c5`
+* Staking Bridge (testnet): `0xB24e0ac9199e8f4F69eF0eD8ee266b2433AF0dF0`
+* Staking Bridge (stagnet): `0x7D88CD817227D599815d407D929af18Bb8D57176`
