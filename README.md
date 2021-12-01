@@ -52,7 +52,7 @@ Parameters:
 Emits: `Stake_Transferred` event
 
 
-## Depoyments
+## Deployments
 ### Ropsten
 * Staking Bridge (testnet): `0xB24e0ac9199e8f4F69eF0eD8ee266b2433AF0dF0`
 * Staking Bridge (stagnet): `0x7D88CD817227D599815d407D929af18Bb8D57176`
