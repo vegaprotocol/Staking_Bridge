@@ -54,7 +54,7 @@ Emits: `Stake_Transferred` event
 ## Deployments
 
 ### Mainnet 
-* Staking Bridge (mainnet): 0x195064D33f09e0c42cF98E665D9506e0dC17de68
+* Staking Bridge (mainnet): `0x195064D33f09e0c42cF98E665D9506e0dC17de68`
 
 ### Ropsten
 * Staking Bridge (testnet): `0xB24e0ac9199e8f4F69eF0eD8ee266b2433AF0dF0`
