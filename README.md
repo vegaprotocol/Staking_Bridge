@@ -27,7 +27,6 @@ Parameters:
 
 Emits: `Stake_Deposited` event
 
-
 NOTE: users MUST run `approve()` on VEGA token contract before attempting to stake.
 
 ### Unstake
@@ -47,12 +46,16 @@ Function signature: `transfer_stake(uint256 amount, address new_address, bytes32
 Parameters:
 * amount - The amount of tokens to transfer
 * new_address - The Ethereum address to own the transferred stake, which will be able to withdraw at a later time
-* vega_public_key - The target Vega public key who's balance is to be transfered
+* vega_public_key - The target Vega public key whose balance is to be transfered
 
 Emits: `Stake_Transferred` event
 
 
 ## Deployments
+
+### Mainnet 
+* Staking Bridge (mainnet): 0x195064D33f09e0c42cF98E665D9506e0dC17de68
+
 ### Ropsten
 * Staking Bridge (testnet): `0xB24e0ac9199e8f4F69eF0eD8ee266b2433AF0dF0`
 * Staking Bridge (stagnet): `0x7D88CD817227D599815d407D929af18Bb8D57176`
