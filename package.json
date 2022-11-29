@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ethereumjs-abi": "^0.6.8"
+  }
+}
