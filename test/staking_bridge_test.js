@@ -165,4 +165,43 @@ contract("ERC20_Staking_Bridge",  (accounts) => {
         }
         
     })
+
+    it("Staking Bridge prohibits users from removing stake they don't own (0071-STAK-012)", async () => {
+        let vega_public_key = crypto.randomBytes(32);
+
+        let staking_bridge_instance = await Vega_Staking_Bridge.deployed();
+        let vega_token_instance = await Vega_2_TEST_STANDIN_DO_NOT_DEPLOY.deployed();
+        
+        let deposit_amount = new BN("1000000000000000000");
+
+        await vega_token_instance.approve(staking_bridge_instance.address, deposit_amount, {from: wallets[0]});
+        await staking_bridge_instance.stake(deposit_amount, vega_public_key, {from: wallets[0]});
+
+        try {
+            await staking_bridge_instance.remove_stake(deposit_amount, vega_public_key, {from: wallets[1]});
+            throw "Staking Bridge allowed user to remove stake they don't own";
+        } catch (error) {
+            return;
+        }        
+    })
+
+    it("Staking Bridge prohibits users from removing stake they have transfered to other ETH address (0071-STAK-013)", async () => {
+        let vega_public_key = crypto.randomBytes(32);
+
+        let staking_bridge_instance = await Vega_Staking_Bridge.deployed();
+        let vega_token_instance = await Vega_2_TEST_STANDIN_DO_NOT_DEPLOY.deployed();
+        
+        let deposit_amount = new BN("1000000000000000000");
+
+        await vega_token_instance.approve(staking_bridge_instance.address, deposit_amount, {from: wallets[0]});
+        await staking_bridge_instance.stake(deposit_amount, vega_public_key, {from: wallets[0]});
+        await staking_bridge_instance.transfer_stake(deposit_amount, wallets[1], vega_public_key, {from: wallets[0]});
+
+        try {
+            await staking_bridge_instance.remove_stake(deposit_amount, vega_public_key, {from: wallets[0]});
+            throw "Staking Bridge allowed user to remove stake they have transfered to other ETH address";
+        } catch (error) {
+            return;
+        }
+    })
 })
