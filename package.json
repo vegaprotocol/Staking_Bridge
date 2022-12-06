@@ -37,6 +37,7 @@
     "node-gyp-build": "^4.5.0",
     "npm-ci": "^0.0.2",
     "pbkdf2": "^3.1.2",
+    "prettier": "^2.8.0",
     "randombytes": "^2.1.0",
     "readable-stream": "^3.6.0",
     "ripemd160": "^2.0.2",
